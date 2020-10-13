@@ -33,7 +33,7 @@ router.post(
 
 			// if user already exists, send message back
 			if(user) {
-				res.status(400).json({ errors: [{ msg: 'User already exists'}] });
+				 return res.status(400).json({ errors: [{ msg: 'User already exists'}] });
 			}
 
 			const avatar = gravatar.url(email, {
@@ -49,7 +49,7 @@ router.post(
 				password
 			});
 
-			// hashing new users password and saving
+			// hashing new users password 
 			const salt = await bcrypt.genSalt(10);
 
 			user.password = await bcrypt.hash(password, salt);
